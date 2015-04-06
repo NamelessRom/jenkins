@@ -31,7 +31,7 @@ done < ${targetfile}
 
 # Newest to oldest, because new is always better!
 if [[ "${#BUILD_N_2_1[@]}" -gt 0 ]]; then
-	cd /android; repo init -u https://github.com/NamelessRom/android.git -b n-2.1; repo sync -j 100; cd ${currentdir};
+	cd /android; repo init -u https://github.com/NamelessRom/android.git -b n-2.1; repo sync -j 100;
 	for device in "${BUILD_N_2_1[@]}"; do
 		/bin/bash /opt/scripts/build.sh $DEVICE nightly true true true true false /dev/null
 	done
@@ -40,12 +40,14 @@ else
 fi
 
 if [[ "${#BUILD_N_2_0[@]}" -gt 0 ]]; then
-	cd /android; repo init -u https://github.com/NamelessRom/android.git -b n-2.0; repo sync -j 100; cd ${currentdir};
+	cd /android; repo init -u https://github.com/NamelessRom/android.git -b n-2.0; repo sync -j 100;
 	for device in "${BUILD_N_2_0[@]}"; do
 		/bin/bash /opt/scripts/build.sh $DEVICE nightly true true true true false /dev/null
 	done
 else
 	echo "No devices queued for n-2.1";
 fi
+
+ cd ${currentdir};
 
 exit 0
